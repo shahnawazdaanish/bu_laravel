@@ -57,6 +57,7 @@ Route::get('/students', function(){
     echo 'Students';
 });
 Route::resource('course', 'CourseController');
+Route::resource('teacher', 'TeacherController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -78,4 +79,8 @@ Route::get('storage/{filename}', function ($filename)
     return $response;
 });
 
+
+//Route::get("/create_teacher", function(){
+//   return $teacher = factory(App\Teacher::class, 500)->create();
+//});
 

@@ -223,13 +223,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="pages/layout/top-nav.html" class="nav-link">
+                                <a href="{!! url('teacher/create') !!}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Add New</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{!! url('dashboard/all-teachers') !!}" class="nav-link">
+                                <a href="{!! url('teacher') !!}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>All Teachers</p>
                                 </a>
