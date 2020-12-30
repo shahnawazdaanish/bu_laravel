@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Teacher Manage</h1>
+                    <h1>Student Manage</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Edit Teacher</li>
+                        <li class="breadcrumb-item active">Edit Student</li>
                     </ol>
                 </div>
             </div>
@@ -24,14 +24,14 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Teacher</h3>
+                            <h3 class="card-title">Edit Student</h3>
                         </div>
                         <!-- /.card-header -->
 
 
                         <!-- form start -->
                         <form role="form" method="post" enctype="multipart/form-data"
-                              action="{!! url('teacher', $teacher->id) !!}">
+                              action="{!! url('student', $student->id) !!}">
                             @method('PUT')
                             @csrf
 
@@ -39,43 +39,24 @@
                                 <div class="form-group">
                                     <label for="courseTitle">Name</label>
                                     <input type="text" name="name" class="form-control" id="courseTitle"
-                                           placeholder="Enter Name" value="{!! $teacher->name !!}" required>
+                                           placeholder="Enter Name" value="{!! $student->name !!}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="courseTitle">Age</label>
                                     <input type="text" name="age" class="form-control" id="courseTitle"
-                                           placeholder="Enter Age" value="{!! $teacher->age !!}" required>
+                                           placeholder="Enter Age" value="{!! $student->age !!}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="courseTitle">Qualification</label>
-                                    <input type="text" name="qualification" class="form-control" id="courseTitle"
-                                           placeholder="Enter Qualification" value="{!! $teacher->qualification !!}"
+                                    <label for="courseTitle">Class</label>
+                                    <input type="text" name="class" class="form-control" id="courseTitle"
+                                           placeholder="Enter Class" value="{!! $student->class !!}"
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="courseDescription">Department</label>
-                                    <select name="department" id="courseDescription" class="form-control" required>
-                                        <option {{ $teacher->department == 'CSE' ? 'selected' : '' }} value="CSE">
-                                            CSE
-                                        </option>
-                                        <option {{ $teacher->department == 'BBA' ? 'selected' : '' }} value="BBA">
-                                            BBA
-                                        </option>
-                                        <option {{ $teacher->department == 'EEE' ? 'selected' : '' }} value="EEE">
-                                            EEE
-                                        </option>
-                                        <option {{ $teacher->department == 'LAW' ? 'selected' : '' }} value="LAW">
-                                            LAW
-                                        </option>
-                                        <option
-                                            {{ $teacher->department == 'PHARMACY' ? 'selected' : '' }} value="PHARMACY">
-                                            PHARMACY
-                                        </option>
-                                        <option
-                                            {{ $teacher->department == 'ARCHITECTURE' ? 'selected' : '' }} value="ARCHITECTURE">
-                                            ARCHITECTURE
-                                        </option>
-                                    </select>
+                                    <label for="courseTitle">Roll</label>
+                                    <input type="text" name="roll" class="form-control" id="courseTitle"
+                                           placeholder="Enter Roll" value="{!! $student->roll !!}"
+                                           required>
                                 </div>
 
                                 <div class="form-group">
@@ -97,7 +78,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <a href="{!! url('teacher') !!}" class="btn btn-warning">Back</a>
+                                <a href="{!! url('student') !!}" class="btn btn-warning">Back</a>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>

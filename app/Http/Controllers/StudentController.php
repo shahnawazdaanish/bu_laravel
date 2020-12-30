@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Teacher;
+use App\Student;
 use Illuminate\Http\Request;
 
-class TeacherController extends Controller
+class StudentController extends Controller
 {
-    protected $teacher;
+    protected $student;
 
-    public function __construct(Teacher $teacher)
+    public function __construct(Student $student)
     {
-        $this->teacher = $teacher;
+        $this->student = $student;
     }
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::query()->paginate(30);
-        return view("admin.teachers.index")->with('teachers', $teachers);
+        $students = Student::query()->paginate(30);
+        return view("admin.students.index")->with('students', $students);
     }
 
     /**
@@ -31,7 +31,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        return view('admin.teachers.create');
+        return view('admin.students.create');
     }
 
     /**
@@ -46,12 +46,12 @@ class TeacherController extends Controller
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'name' => 'required|string',
             'age' => 'required|numeric',
-            'qualification' => 'required',
-            'department' => 'required|in:CSE,BBA,EEE,LAW,PHARMACY,ARCHITECTURE',
+            'class' => 'required',
+            'roll' => 'required',
             'thumb' => 'file'
         ]);
         if($validator->fails()) {
-            return redirect()->route('teacher.create')->withErrors($validator->errors());
+            return redirect()->route('student.create')->withErrors($validator->errors());
         }
 
         # VALIDATION PASSED
@@ -62,8 +62,10 @@ class TeacherController extends Controller
 
         $data['thumb'] = str_replace("avatars/", "",$data['thumb']);
         // dd($data['cover']);
-        $course = $this->teacher->create($data);
-        return redirect()->to('/teacher');
+
+//        dd($data);
+        $student = $this->student->create($data);
+        return redirect()->to('/student');
     }
 
     /**
@@ -85,8 +87,8 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        $teacher = $this->teacher->find($id);
-        return view('admin.teachers.edit', compact('teacher'));
+        $student = $this->student->find($id);
+        return view('admin.students.edit', compact('student'));
     }
 
     /**
@@ -98,17 +100,17 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $teacher = $this->teacher->find($id);
-        $teacher->name = $request->name;
-        $teacher->age = $request->age;
-        $teacher->qualification = $request->qualification;
-        $teacher->department = $request->department;
+        $student = $this->student->find($id);
+        $student->name = $request->name;
+        $student->age = $request->age;
+        $student->class = $request->class;
+        $student->roll = $request->roll;
         if($request->hasFile('thumb')){
-            $teacher->thumb = $request->file('thumb')->store('avatars');
+            $student->thumb = $request->file('thumb')->store('avatars');
         }
 
-        $teacher->save();
-        return redirect()->to('teacher');
+        $student->save();
+        return redirect()->to('student');
     }
 
     /**
@@ -119,7 +121,7 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        $this->teacher->where('id', $id)->delete();
+        $this->student->where('id', $id)->delete();
         return redirect()->to('teacher');
     }
 }
